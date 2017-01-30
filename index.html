@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>PubNub Chatroom</title>
+		<link rel="stylesheet" type="text/css" href="css/stylesheet.css">
+		<link rel="icon" type="image" href="images/icon.png">
+	</head>
+	<body>
+		<script src="https://cdn.pubnub.com/sdk/javascript/pubnub.4.4.0.js"></script>
+		<script src="js/script.js"></script>
+
+		<h1>PubNub Chatroom</h1>
+
+		<section>
+			<h2>Chatbox</h2>
+			<p id=chatbox0></p><br>
+			<p id=chatbox1></p><br>
+			<p id=chatbox2></p><br>
+			<p id=chatbox3></p><br>
+			<p id=chatbox4></p><br>
+			
+		</section>
+		<section>
+			<button type="button" onclick="send_message('Test')">Test</button>
+			<button type="button" onclick="send_message('Hello!')">Hello!</button>
+			<button type="button" onclick="send_message('How are you?')">How are you?</button>
+			<button type="button" onclick="send_message('Echo')">Echo</button>
+			<button type="button" onclick="send_message('Anybody there?')">Anybody there?</button>
+		</section>
+
+	</body>
+</html>
