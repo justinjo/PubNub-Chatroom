@@ -41,9 +41,6 @@ function send_message() {
         send(message);
     }
     document.getElementById('usermessage').value = '';
-
-    //var chat = document.getElementById('chatbox');
-    //chat.scrollTop = chat.scrollHeight;
 }
 
 // called internally
@@ -66,7 +63,10 @@ function send(m) {
             var message = 'User ' + m.message.uuid.substring(0,8) + ': \'' + m.message.text + '\'<br>';
             chat.innerHTML = chat.innerHTML + message;
             console.log(m)
-            //chat.scrollTop = element.scrollHeight;
+
+            // scroll to bottom of chatbox
+            var chat = document.getElementById('chatbox');
+            chat.scrollTop = chat.scrollHeight;
         }
     })
 
