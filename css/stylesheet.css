@@ -8,7 +8,7 @@ h1 {
 
 #chatbox {
     text-align: left;
-    overflow: scroll;
+    overflow: auto;
     margin: 0px auto;
     margin-bottom: 25px;
     padding: 10px;

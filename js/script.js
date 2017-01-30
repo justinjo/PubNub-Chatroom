@@ -7,6 +7,7 @@ var pubnub = new PubNub({
     uuid: uuid
 });
 
+
 pubnub.subscribe({
     channels: ['Chat Channel'],
     error : function (error) {
@@ -15,10 +16,11 @@ pubnub.subscribe({
     }
 });
 
+// log in 
 pubnub.publish({
     message : {
     	uuid : uuid,
-    	text: 'Logging on!'
+    	text: 'Logging on...'
     },
     channel : 'Chat Channel',
 },
@@ -32,21 +34,20 @@ function (status, response) {
 }
 );
 
+// called externally
 function send_message() {
     var message = document.getElementById('usermessage').value;
     if (message.length > 0) {
-        pubnub.publish({
-            message : {
-                uuid : uuid,
-                text : message
-            },
-            channel : 'Chat Channel',
-        });
+        publish(message);
     }
     document.getElementById('usermessage').value = '';
+
+    //var chat = document.getElementById('chatbox');
+    //chat.scrollTop = chat.scrollHeight;
 }
 
-function send_message(m) {
+// called internally
+function publish(m) {
     pubnub.publish({
         message : {
             uuid : uuid,
@@ -70,6 +71,6 @@ function send_message(m) {
     })
 
     window.onbeforeunload = function() {
-        send_message('Logging off')
+        send_message('Logging off!')
     }
 })();
