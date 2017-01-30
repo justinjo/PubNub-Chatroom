@@ -8,7 +8,7 @@ var pubnub = new PubNub({
 });
 
 pubnub.subscribe({
-    channels: ['Test Channel'],
+    channels: ['Chat Channel'],
     error : function (error) {
         // Handle error here
         console.log(JSON.stringify(error));
@@ -20,7 +20,7 @@ pubnub.publish({
     	uuid : uuid,
     	text: 'Logging on!'
     },
-    channel : 'Test Channel',
+    channel : 'Chat Channel',
 },
 function (status, response) {
     if (status.error) {
@@ -40,7 +40,7 @@ function send_message() {
                 uuid : uuid,
                 text : message
             },
-            channel : 'Test Channel',
+            channel : 'Chat Channel',
         });
     }
     document.getElementById("usermessage").value = "";
@@ -55,4 +55,3 @@ function send_message() {
         }
     })
 })();
-
