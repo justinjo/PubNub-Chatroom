@@ -34,14 +34,16 @@ function (status, response) {
 
 function send_message() {
     var message = document.getElementById("usermessage").value;
+    if (message.length > 0) {
+        pubnub.publish({
+            message : {
+                uuid : uuid,
+                text : message
+            },
+            channel : 'Test Channel',
+        });
+    }
     document.getElementById("usermessage").value = "";
-    pubnub.publish({
-        message : {
-            uuid : uuid,
-            text : message
-        },
-        channel : 'Test Channel',
-    });
 }
 
 (function() {
