@@ -50,7 +50,8 @@ function send_message() {
     pubnub.addListener({
         message: function(m) {
             var chat = document.getElementById("chatbox");
-            chat.innerHTML = chat.innerHTML + 'User ' + m.message.uuid + ': \'' + m.message.text + '\'<br>';
+            // first 8 characters of UUID determines username
+            chat.innerHTML = chat.innerHTML + 'User ' + m.message.uuid.substring(0,8) + ': \'' + m.message.text + '\'<br>';
             console.log(m)
         }
     })
