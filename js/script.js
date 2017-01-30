@@ -1,8 +1,6 @@
 // generate random UUID as username
 var uuid = PubNub.generateUUID();
 
-var messages = ['','','','',''];
-
 var pubnub = new PubNub({
  	subscribeKey: 'sub-c-22d37992-dea5-11e6-b2ae-0619f8945a4f',
     publishKey: 'pub-c-211da9ce-adcf-44ab-b2d1-fc1c0a8eaadc',
@@ -34,11 +32,12 @@ function (status, response) {
 }
 );
 
-function send_message(m) {
+function send_message() {
+    var message = document.getElementById("usermessage").value;
     pubnub.publish({
         message : {
             uuid : uuid,
-            text : m
+            text : message
         },
         channel : 'Test Channel',
     });
@@ -47,11 +46,8 @@ function send_message(m) {
 (function() {
     pubnub.addListener({
         message: function(m) {
-
-            document.getElementById("chatbox0").innerHTML = 
-
-            //'User ' + m.message.uuid + ': \'' + m.message.text + '\'<br>';
-            //document.write('User ' + m.message.uuid + ': \'' + m.message.text + '\'<br>')
+            var chat = document.getElementById("chatbox");
+            chat.innerHTML = chat.innerHTML + 'User ' + m.message.uuid + ': \'' + m.message.text + '\'<br>';
             console.log(m)
         }
     })
