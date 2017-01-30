@@ -38,7 +38,7 @@ function (status, response) {
 function send_message() {
     var message = document.getElementById('usermessage').value;
     if (message.length > 0) {
-        publish(message);
+        send(message);
     }
     document.getElementById('usermessage').value = '';
 
@@ -47,7 +47,7 @@ function send_message() {
 }
 
 // called internally
-function publish(m) {
+function send(m) {
     pubnub.publish({
         message : {
             uuid : uuid,
