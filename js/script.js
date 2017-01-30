@@ -1,3 +1,7 @@
+/* script.js
+ * By Justin Jo
+ * Last modified: 1/30/2017 */
+
 // generate random UUID as username
 var uuid = PubNub.generateUUID();
 
