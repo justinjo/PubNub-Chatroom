@@ -34,6 +34,7 @@ function (status, response) {
 
 function send_message() {
     var message = document.getElementById("usermessage").value;
+    document.getElementById("usermessage").value = "";
     pubnub.publish({
         message : {
             uuid : uuid,
