@@ -8,32 +8,6 @@ var pubnub = new PubNub({
 });
 
 
-pubnub.subscribe({
-    channels: ['Chat Channel'],
-    error : function (error) {
-        // Handle error here
-        console.log(JSON.stringify(error));
-    }
-});
-
-// log in 
-pubnub.publish({
-    message : {
-    	uuid : uuid,
-    	text: 'Logging on...'
-    },
-    channel : 'Chat Channel',
-},
-function (status, response) {
-    if (status.error) {
-        // handle error
-        console.log(status)
-    } else {
-        console.log('message Published w/ timetoken', response.timetoken)
-    }
-}
-);
-
 // called externally
 function send_message() {
     var message = document.getElementById('usermessage').value;
@@ -54,15 +28,18 @@ function send(m) {
     });
 }
 
-// update chat box
 (function() {
+    pubnub.subscribe({
+        channels: ['Chat Channel']
+    });
+
     pubnub.addListener({
         message: function(m) {
             var chat = document.getElementById('chatbox');
             // first 8 characters of UUID determines username
             var message = 'User ' + m.message.uuid.substring(0,8) + ': \'' + m.message.text + '\'<br>';
             chat.innerHTML = chat.innerHTML + message;
-            console.log(m)
+            console.log(m);
 
             // scroll to bottom of chatbox
             var chat = document.getElementById('chatbox');
@@ -70,7 +47,12 @@ function send(m) {
         }
     })
 
+    send('Logging on...');
+
     window.onbeforeunload = function() {
-        send_message('Logging off!')
+        send('Logging off!');
+        pubnub.unsubscribe({
+            channels : ['Chat Channel']
+        });
     }
 })();
